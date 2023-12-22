@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <title>Test</title>
+  <style>
+    * { box-sizing: border-box }
+    html { height: 100% }
+    body { margin: 0; height: 100% }
+    main { height: 100%; display: grid; grid-template: repeat(2, 1fr) / repeat(2, 1fr); }
+    aside { position: absolute; inset: 20px 25px auto auto; pointer-events: none }
+    main > [id] { position: relative }
+    main > [id]::before {
+      content: attr(id); position: absolute; inset: 0; pointer-events: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: bold; opacity: 0.2;
+      z-index: -1;
+    }
+    #counter {
+      display: flex; align-items: center; justify-content: center;
+      font-variant-numeric: tabular-nums;
+      font-size: 4em; user-select: none; cursor: pointer;
+    }
+    #board { position: relative }
+    #board svg { display: block; width: 100%; height: 100%; touch-action: none }
+    #todo { display: flex; flex-flow: column nowrap; align-items: stretch; gap: 5px; padding: 10px }
+    #todo-input { font-size: 1.2em; padding: 5px; }
+    #todo-list { list-style: none; padding: 0; margin: 0; flex: 1; }
+    #todo-list li { display: flex; align-items: center; justify-content: space-between; padding: 2px 5px 2px 30px; gap: 5px; cursor: grab }
+    #todo-list li.dragging { cursor: grabbing; }
+    #todo-list li input[type="text"] { flex: 1; }
+    #todo-list li button { font-size: 1.2em; padding: 0 5px; }
+    @media (prefers-color-scheme: dark) {
+      .ql-editor.ql-blank.ql-blank::before { color: rgba(255, 255, 255, .6) }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div id="counter">0</div>
+    <div id="board"></div>
+    <div id="todo">
+      <input id="todo-input" placeholder="Add Todo">
+      <ul id="todo-list"></ul>
+    </div>
+    <div id="editor"></div>
+  </main>
+  <aside>
+    <samp>PING: <span id="ping">0</span></samp>
+  </aside>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill-cursors@4.0.2/dist/quill-cursors.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

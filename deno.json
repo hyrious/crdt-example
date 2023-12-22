@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "dev": "conc \"esbuild main.ts --bundle --servedir=. --outdir=.\" \"deno run --allow-net server.ts\""
+  }
+}
